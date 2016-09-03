@@ -63,7 +63,7 @@ namespace musicWPF
         
         void clearButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            songList.Clear();
         }
     }
 }
