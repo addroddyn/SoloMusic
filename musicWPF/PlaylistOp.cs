@@ -12,6 +12,7 @@ using System.Text;
 using System.Windows;
 using Microsoft.Win32;
 using WinForms = System.Windows.Forms;
+using System.IO;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -40,6 +41,24 @@ namespace musicWPF
         void addFolderButton_Click(object sender, RoutedEventArgs e)
         {
             var openFolder = new WinForms.FolderBrowserDialog();
+            if (openFolder.ShowDialog() == WinForms.DialogResult.OK)
+            {
+                foreach (string fileName in Directory.EnumerateFiles(openFolder.SelectedPath))
+                {
+                    Uri file = new Uri(fileName);
+                    var song = new Song(file);
+                    songList.Add(song.songName);
+                }
+                foreach (string dirName in Directory.EnumerateDirectories(openFolder.SelectedPath))
+                {
+                    foreach (string fileName in Directory.EnumerateFiles(dirName))
+                    {
+                        Uri file = new Uri(fileName);
+                        var song = new Song(file);
+                        songList.Add(song.songName);
+                    }
+                }
+            }
         }
         
         void clearButton_Click(object sender, RoutedEventArgs e)
