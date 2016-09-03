@@ -35,7 +35,7 @@ namespace musicWPF
             {
                 Uri file = new Uri(openFile.FileName);
                 var song = new Song(file);
-                songList.Add(song.songName);
+                songList.Add(song);
             }
         }
         void addFolderButton_Click(object sender, RoutedEventArgs e)
@@ -47,7 +47,7 @@ namespace musicWPF
                 {
                     Uri file = new Uri(fileName);
                     var song = new Song(file);
-                    songList.Add(song.songName);
+                    songList.Add(song);
                 }
                 foreach (string dirName in Directory.EnumerateDirectories(openFolder.SelectedPath))
                 {
@@ -55,7 +55,7 @@ namespace musicWPF
                     {
                         Uri file = new Uri(fileName);
                         var song = new Song(file);
-                        songList.Add(song.songName);
+                        songList.Add(song);
                     }
                 }
             }

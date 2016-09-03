@@ -25,8 +25,8 @@ namespace musicWPF
     /// </summary>
     public partial class Playlist : Window
     {
-        ObservableCollection<string> songList = new ObservableCollection<string>();
-        public ObservableCollection<string> SongList
+        ObservableCollection<Song> songList = new ObservableCollection<Song>();
+        public ObservableCollection<Song> SongList
         {
             get
             {

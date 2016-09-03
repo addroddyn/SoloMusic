@@ -20,8 +20,15 @@ namespace musicWPF
         private MediaPlayer control = new MediaPlayer();
         private Uri _song;
         private TimeSpan pos;
-        public string songName;
+        private string songName;
         
+        public string SongName
+        {
+            get
+            {
+                return songName;
+            }
+        }
         public Song(Uri filename)
         {
             songName = filename.ToString();

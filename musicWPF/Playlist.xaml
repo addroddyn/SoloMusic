@@ -14,7 +14,15 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <DockPanel>
-            <ListBox ItemsSource="{Binding Path=SongList}"/>
+            <ListBox ItemsSource="{Binding Path=SongList}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                        <TextBlock Text="{Binding SongName}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </DockPanel>
         <Grid
             Grid.Row="1"
