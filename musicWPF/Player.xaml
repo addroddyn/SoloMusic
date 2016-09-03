@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="musicWPF.Player" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="musicWPF"
+    Height="300"
+    Width="300"
+    x:Name="window1">
+    <Grid>
+        <Button
+            Content="Playlist"
+            x:Name="playlistButton"
+            Click="playlistButton_Click" />
+    </Grid>
+</Window>
