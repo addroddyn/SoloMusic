@@ -1,12 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: IstvanT
- * Date: 09/03/2016
- * Time: 14:37
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;

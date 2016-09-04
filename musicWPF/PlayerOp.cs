@@ -1,12 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: IstvanT
- * Date: 09/03/2016
- * Time: 14:36
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -65,6 +57,7 @@ namespace musicWPF
             player.Play();
             SongArtist = song.SongArtist;
             SongTitle = song.SongTitle;
+            player.MediaEnded += player_MediaEnded;
         }
         
         void StopButton_Click(object sender, RoutedEventArgs e)
@@ -82,6 +75,31 @@ namespace musicWPF
             {
                 Play(_playlist.SongList[0]);
             }
+        }
+        
+        void player_MediaEnded(object sender, EventArgs e)
+        {
+            PlayNext();
+        }
+        
+        void PlayNext()
+        {
+            int songIndex = 0;
+            for(int i = 0; i < _playlist.SongList.Count; i++)
+            {
+                if (currentlyPlaying == _playlist.SongList[i]._fileName)
+                {
+                    songIndex = i;
+                }
+            }
+            if (songIndex < _playlist.SongList.Count - 1)
+            {
+                Play(_playlist.SongList[songIndex + 1]);
+            }
+        }
+        void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            PlayNext();
         }
     }
 }

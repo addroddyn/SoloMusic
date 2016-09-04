@@ -52,7 +52,8 @@
             <Grid Grid.Column="2">
                 <Button
                     Content="Next"
-                    x:Name="nextButton"/>
+                    x:Name="nextButton"
+                    Click="NextButton_Click"/>
             </Grid>
             <Grid Grid.Column="3">
                 <Button
