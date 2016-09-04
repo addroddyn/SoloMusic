@@ -1,14 +1,68 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Window
     x:Class="musicWPF.Player" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="musicWPF"
-    Height="300"
-    Width="300"
-    x:Name="window1">
+    Height="150"
+    Width="450"
+    MinHeight="100"
+    MinWidth="300"
+    x:Name="window1"
+    LocationChanged="window1_LocationChanged">
     <Grid>
-        <Button
-            Content="Playlist"
-            x:Name="playlistButton"
-            Click="playlistButton_Click" />
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid
+            Background="BlanchedAlmond">
+            <TextBlock
+                Text="{Binding SongTitle}"
+                x:Name="SongArtistBar" />
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Background="BurlyWood">
+            <TextBlock
+                Text="Placeholder"
+                x:Name="SongTitleBar" />
+        </Grid>
+        <Grid
+            Grid.Row="2"
+            Background="AliceBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Button
+                    Content="Play"
+                    x:Name="playButton"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Button
+                    Content="Stop"
+                    x:Name="stopButton"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Button
+                    Content="Next"
+                    x:Name="nextButton"/>
+            </Grid>
+            <Grid Grid.Column="3">
+                <Button
+                    Content="Prev"
+                    x:Name="prevButton"/>
+            </Grid>
+            <Grid Grid.Column="4">
+                <Button
+                    Content="Playlist"
+                    x:Name="playlistButton"
+                    Click="playlistButton_Click"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

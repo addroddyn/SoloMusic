@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -23,15 +24,24 @@ namespace musicWPF
     /// </summary>
     public partial class Player : Window
     {
-        Window _playlist;
+        Playlist _playlist;
         bool isPlaylistOpen = false;
 
-        
-        public Player(Window playlist)
+        public Player()
         {
-            _playlist = playlist;
             InitializeComponent();
             Closing += Player_Closing;
+            this.DataContext = this;
+        }
+        
+        void Test()
+        {
+            MessageBox.Show("boop");
+        }
+        
+        public void SetPlaylist(Playlist playlist)
+        {
+            _playlist = playlist;
         }
     }
 }

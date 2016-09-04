@@ -23,6 +23,9 @@ namespace musicWPF
     /// </summary>
     public partial class Player : Window
     {
+        Point playerPos = new Point();
+        MediaPlayer player = new MediaPlayer();
+        
         void playlistButton_Click(object sender, RoutedEventArgs e)
         {
             if (isPlaylistOpen)
@@ -32,6 +35,10 @@ namespace musicWPF
             }
             else
             {
+                playerPos.X = this.Left + this.Width;
+                playerPos.Y = this.Top;
+                _playlist.Left = playerPos.X;
+                _playlist.Top = playerPos.Y;
                 _playlist.Show();
                 isPlaylistOpen = true;
             }
@@ -40,6 +47,20 @@ namespace musicWPF
         void Player_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);
+        }
+        
+        void window1_LocationChanged(object sender, EventArgs e)
+        {
+                playerPos.X = this.Left + this.Width;
+                playerPos.Y = this.Top;
+                _playlist.Left = playerPos.X;
+                _playlist.Top = playerPos.Y;
+        }
+        
+        public void Play(Song song)
+        {
+            player.Open(song._fileName);
+            player.Play();
         }
     }
 }

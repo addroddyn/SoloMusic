@@ -28,16 +28,20 @@ namespace musicWPF
     /// </summary>
     public partial class Playlist : Window
     {
+        public int currentSong = 1;
+        
         void addFileButton_Click(object sender, RoutedEventArgs e)
         {
             var openFile = new OpenFileDialog();
             if (openFile.ShowDialog() == true)
             {
                 Uri file = new Uri(openFile.FileName);
-                var song = new Song(file);
+                var song = new Song(file, currentSong);
                 songList.Add(song);
+                currentSong++;
             }
         }
+        
         void addFolderButton_Click(object sender, RoutedEventArgs e)
         {
             var openFolder = new WinForms.FolderBrowserDialog();
@@ -46,16 +50,18 @@ namespace musicWPF
                 foreach (string fileName in Directory.EnumerateFiles(openFolder.SelectedPath))
                 {
                     Uri file = new Uri(fileName);
-                    var song = new Song(file);
+                    var song = new Song(file, currentSong);
                     songList.Add(song);
+                    currentSong++;
                 }
                 foreach (string dirName in Directory.EnumerateDirectories(openFolder.SelectedPath))
                 {
                     foreach (string fileName in Directory.EnumerateFiles(dirName))
                     {
                         Uri file = new Uri(fileName);
-                        var song = new Song(file);
+                        var song = new Song(file, currentSong);
                         songList.Add(song);
+                        currentSong++;
                     }
                 }
             }
@@ -64,6 +70,12 @@ namespace musicWPF
         void clearButton_Click(object sender, RoutedEventArgs e)
         {
             songList.Clear();
+            currentSong = 1;
+        }
+        
+        void listBox1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            playerWindow.Play(songList[currentSong - 2]);
         }
     }
 }

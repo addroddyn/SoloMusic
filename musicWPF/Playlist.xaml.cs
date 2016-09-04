@@ -25,6 +25,7 @@ namespace musicWPF
     /// </summary>
     public partial class Playlist : Window
     {
+        Player playerWindow = new Player();
         ObservableCollection<Song> songList = new ObservableCollection<Song>();
         public ObservableCollection<Song> SongList
         {
@@ -33,13 +34,14 @@ namespace musicWPF
                 return songList;
             }
         }
-        
+
         public Playlist()
         {
             InitializeComponent();
             this.DataContext = this;
+            this.ShowInTaskbar = false;
             this.Hide();
-            var playerWindow = new Player(this);
+            playerWindow.SetPlaylist(this);
             playerWindow.Show();
         }
     }

@@ -17,48 +17,30 @@ namespace musicWPF
     /// </summary>
     public class Song
     {
-        private MediaPlayer control = new MediaPlayer();
-        private Uri _song;
-        private TimeSpan pos;
-        private string songName;
+        public Uri _fileName;
+        private string _songTitle;
+        private string _songNumber;
         
-        public string SongName
+        public string SongNumber
         {
             get
             {
-                return songName;
+                return _songNumber;
             }
         }
-        public Song(Uri filename)
+        public string SongTitle
         {
-            songName = filename.ToString();
-            _song = filename;
-            control.Open(_song);
+            get
+            {
+                return _songTitle;
+            }
         }
         
-        public void Play()
+        public Song(Uri filename, int songNumber)
         {
-            control.Play();
-        }
-        
-        public void Stop()
-        {
-            control.Stop();
-        }
-        
-        public void SetPosition()
-        {
-            pos = control.Position;
-        }
-        
-        public TimeSpan GetPosition()
-        {
-            return pos;
-        }
-        
-        public void Close()
-        {
-            control.Close();
+            _songNumber = songNumber.ToString();
+            _songTitle = filename.ToString();
+            _fileName = filename;
         }
     }
 }
