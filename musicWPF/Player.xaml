@@ -17,14 +17,14 @@
         <Grid
             Background="BlanchedAlmond">
             <TextBlock
-                Text="{Binding SongTitle}"
+                Text="{Binding SongArtist}"
                 x:Name="SongArtistBar" />
         </Grid>
         <Grid
             Grid.Row="1"
             Background="BurlyWood">
             <TextBlock
-                Text="Placeholder"
+                Text="{Binding SongTitle}"
                 x:Name="SongTitleBar" />
         </Grid>
         <Grid

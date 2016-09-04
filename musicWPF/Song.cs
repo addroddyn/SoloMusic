@@ -20,6 +20,7 @@ namespace musicWPF
         public Uri _fileName;
         private string _songTitle;
         private string _songNumber;
+        private string _songArtist;
         
         public string SongNumber
         {
@@ -36,10 +37,19 @@ namespace musicWPF
             }
         }
         
+        public string SongArtist
+        {
+            get
+            {
+                return _songArtist;
+            }
+        }
+        
         public Song(Uri filename, int songNumber)
         {
             _songNumber = songNumber.ToString();
             _songTitle = filename.ToString();
+            _songArtist = filename.ToString();
             _fileName = filename;
         }
     }

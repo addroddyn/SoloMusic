@@ -61,6 +61,8 @@ namespace musicWPF
         {
             player.Open(song._fileName);
             player.Play();
+            SongArtist = song.SongArtist;
+            SongTitle = song.SongTitle;
         }
     }
 }
