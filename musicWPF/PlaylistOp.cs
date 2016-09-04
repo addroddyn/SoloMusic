@@ -73,9 +73,9 @@ namespace musicWPF
             currentSong = 1;
         }
         
-        void listBox1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        void ListBoxItem_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            playerWindow.Play(songList[currentSong - 2]);
+            playerWindow.Play(songList[listBox1.SelectedIndex]);
         }
     }
 }

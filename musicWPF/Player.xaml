@@ -40,12 +40,14 @@
             <Grid>
                 <Button
                     Content="Play"
-                    x:Name="playButton"/>
+                    x:Name="playButton"
+                    Click="PlayButton_Click"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Button
                     Content="Stop"
-                    x:Name="stopButton"/>
+                    x:Name="stopButton"
+                    Click="StopButton_Click"/>
             </Grid>
             <Grid Grid.Column="2">
                 <Button

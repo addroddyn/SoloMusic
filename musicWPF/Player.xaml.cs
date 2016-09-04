@@ -21,14 +21,11 @@ using System.Runtime.CompilerServices;
 
 namespace musicWPF
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
     public partial class Player : Window, INotifyPropertyChanged
     {
         Playlist _playlist;
-        string _songArtist = "boop";
-        string _songTitle = "beep";
+        string _songArtist = "created by";
+        string _songTitle = "addroddyn";
         bool isPlaylistOpen = false;
         
         public event PropertyChangedEventHandler PropertyChanged;
@@ -70,11 +67,6 @@ namespace musicWPF
             InitializeComponent();
             Closing += Player_Closing;
             this.DataContext = this;
-        }
-        
-        void Test()
-        {
-            MessageBox.Show("boop");
         }
         
         public void SetPlaylist(Playlist playlist)

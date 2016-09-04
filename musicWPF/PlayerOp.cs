@@ -25,6 +25,7 @@ namespace musicWPF
     {
         Point playerPos = new Point();
         MediaPlayer player = new MediaPlayer();
+        Uri currentlyPlaying = null;
         
         void playlistButton_Click(object sender, RoutedEventArgs e)
         {
@@ -59,10 +60,28 @@ namespace musicWPF
         
         public void Play(Song song)
         {
+            currentlyPlaying = song._fileName;
             player.Open(song._fileName);
             player.Play();
             SongArtist = song.SongArtist;
             SongTitle = song.SongTitle;
+        }
+        
+        void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            player.Stop();
+        }
+        
+        void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentlyPlaying != null)
+            {
+                player.Play();
+            }
+            else if (_playlist.SongList.Count > 0)
+            {
+                Play(_playlist.SongList[0]);
+            }
         }
     }
 }

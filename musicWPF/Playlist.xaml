@@ -17,8 +17,12 @@
         <DockPanel>
             <ListBox
                 ItemsSource="{Binding Path=SongList}"
-                x:Name="listBox1"
-                MouseDoubleClick="listBox1_MouseDoubleClick">
+                x:Name="listBox1">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
