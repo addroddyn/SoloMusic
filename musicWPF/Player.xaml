@@ -58,7 +58,8 @@
             <Grid Grid.Column="3">
                 <Button
                     Content="Prev"
-                    x:Name="prevButton"/>
+                    x:Name="prevButton"
+                    Click="PrevButton_Click"/>
             </Grid>
             <Grid Grid.Column="4">
                 <Button

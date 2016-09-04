@@ -97,9 +97,30 @@ namespace musicWPF
                 Play(_playlist.SongList[songIndex + 1]);
             }
         }
+        
+        void PlayPrev()
+        {
+            int songIndex = 0;
+            for(int i = 0; i < _playlist.SongList.Count; i++)
+            {
+                if (currentlyPlaying == _playlist.SongList[i]._fileName)
+                {
+                    songIndex = i;
+                }
+            }
+            if (songIndex > 0)
+            {
+                Play(_playlist.SongList[songIndex - 1]);
+            }
+        }
+        
         void NextButton_Click(object sender, RoutedEventArgs e)
         {
             PlayNext();
+        }
+        void PrevButton_Click(object sender, RoutedEventArgs e)
+        {
+            PlayPrev();
         }
     }
 }
