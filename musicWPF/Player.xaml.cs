@@ -16,8 +16,8 @@ namespace musicWPF
 	public partial class Player : Window, INotifyPropertyChanged
 		{
 		Playlist _playlist;
-		string _songArtist = "created by";
-		string _songTitle = "addroddyn";
+		string _songArtist;
+		string _songTitle = "created by addroddyn";
 		bool isPlaylistOpen = false;
 		
         public event PropertyChangedEventHandler PropertyChanged;

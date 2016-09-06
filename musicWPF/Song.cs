@@ -37,12 +37,21 @@ namespace musicWPF
             }
         }
         
-        public Song(Uri filename, int songNumber)
+        public Song(Uri fileUri, string fileString, int songNumber)
         {
+			TagLib.File tagFile = TagLib.File.Create(fileString);
             _songNumber = songNumber.ToString();
-            _songTitle = filename.ToString();
-            _songArtist = filename.ToString();
-            _fileName = filename;
+			_songTitle = tagFile.Tag.Title;
+			if (_songTitle == null)
+				{
+				_songTitle = System.IO.Path.GetFileNameWithoutExtension(fileString);
+				}
+			else
+				{
+				_songArtist = tagFile.Tag.FirstPerformer + " - ";
+				}
+			
+			_fileName = fileUri;
         }
     }
 }
