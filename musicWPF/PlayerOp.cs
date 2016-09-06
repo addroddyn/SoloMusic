@@ -57,9 +57,9 @@ namespace musicWPF
 			posSlider.Value = 0;
             currentlyPlaying = song._fileName;
             player.Open(song._fileName);
-            player.Play();
-            SongArtist = song.SongArtist;
-            SongTitle = song.SongTitle;
+			player.Play();
+			SongArtist = song.SongArtist;
+			SongTitle = song.SongTitle;
 			var timer = new DispatcherTimer();
 			timer.Interval = TimeSpan.FromSeconds(1);
 			timer.Tick += new EventHandler(timer_Tick);

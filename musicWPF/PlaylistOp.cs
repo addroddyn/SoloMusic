@@ -25,13 +25,16 @@ namespace musicWPF
         void addFileButton_Click(object sender, RoutedEventArgs e)
         {
             var openFile = new OpenFileDialog();
-            if (openFile.ShowDialog() == true)
+			openFile.Filter = "Supported files (*.mp3, *.wav, *.wma, *.aac) | *.mp3; *.wav; *.wma; *.aac";
+
+			if (openFile.ShowDialog() == true)
             {
                 Uri file = new Uri(openFile.FileName);
                 var song = new Song(file, currentSong);
                 songList.Add(song);
 				currentSong++;
-            }
+
+			}
         }
         
         void addFolderButton_Click(object sender, RoutedEventArgs e)
@@ -41,19 +44,25 @@ namespace musicWPF
             {
                 foreach (string fileName in Directory.EnumerateFiles(openFolder.SelectedPath))
                 {
-                    Uri file = new Uri(fileName);
-                    var song = new Song(file, currentSong);
-                    songList.Add(song);
-                    currentSong++;
+					if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
+						{
+						Uri file = new Uri(fileName);
+						var song = new Song(file, currentSong);
+						songList.Add(song);
+						currentSong++;
+						}
                 }
                 foreach (string dirName in Directory.EnumerateDirectories(openFolder.SelectedPath))
                 {
                     foreach (string fileName in Directory.EnumerateFiles(dirName))
                     {
-                        Uri file = new Uri(fileName);
-                        var song = new Song(file, currentSong);
-                        songList.Add(song);
-                        currentSong++;
+						if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
+							{
+							Uri file = new Uri(fileName);
+							var song = new Song(file, currentSong);
+							songList.Add(song);
+							currentSong++;
+							}
                     }
                 }
             }
