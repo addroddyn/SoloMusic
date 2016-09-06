@@ -11,7 +11,7 @@ namespace musicWPF
 		{
 		// Initialize player window, set up interface and public/bound variables.
 
-		public Playlist _playlist;
+		public Playlist playlist;
 		public string _songArtist;
 		public string _songTitle = "created by addroddyn";
 		bool isPlaylistOpen = false;

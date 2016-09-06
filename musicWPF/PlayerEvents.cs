@@ -21,9 +21,9 @@ namespace musicWPF
 				{
 				player.Play();
 				}
-			else if (_playlist.SongList.Count > 0)
+			else if (playlist.SongList.Count > 0)
 				{
-				PlayerHelper.Play(_playlist.SongList[0], this);
+				PlayerHelper.Play(playlist.SongList[0], this);
 				}
 			}
 
@@ -46,13 +46,13 @@ namespace musicWPF
 			{
 			if (isPlaylistOpen)
 				{
-				_playlist.Hide();
+				playlist.Hide();
 				isPlaylistOpen = false;
 				}
 			else
 				{
-				PlayerHelper.ChangeLocation(this, _playlist);
-				_playlist.Show();
+				PlayerHelper.ChangeLocation(this, playlist);
+				playlist.Show();
 				isPlaylistOpen = true;
 				}
 			}
@@ -71,7 +71,7 @@ namespace musicWPF
 
 		void window1_LocationChanged(object sender, EventArgs e)
 			{
-			PlayerHelper.ChangeLocation(this, _playlist);
+			PlayerHelper.ChangeLocation(this, playlist);
 			}
 
 		public void timer_Tick(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace musicWPF
 
 		private void window1_Activated(object sender, EventArgs e)
 			{
-			_playlist.Activate();
+			playlist.Activate();
 			}
 		}
 	}

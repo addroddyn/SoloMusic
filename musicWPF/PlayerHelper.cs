@@ -16,7 +16,7 @@ namespace musicWPF
 			playerWindow.SongArtist = song.SongArtist;
 			playerWindow.SongTitle = song.SongTitle;
 			var timer = new DispatcherTimer();
-			timer.Interval = TimeSpan.FromSeconds(1);
+			timer.Interval = TimeSpan.FromSeconds(0.5);
 			timer.Tick += new EventHandler(playerWindow.timer_Tick);
 			timer.Start();
 			playerWindow.player.MediaEnded += playerWindow.player_MediaEnded;
@@ -26,16 +26,16 @@ namespace musicWPF
 			{
 			int songIndex = 0;
 
-			for (int i = 0; i < playerWindow._playlist.SongList.Count; i++)
+			for (int i = 0; i < playerWindow.playlist.SongList.Count; i++)
 				{
-				if (playerWindow.currentlyPlaying == playerWindow._playlist.SongList[i]._fileName)
+				if (playerWindow.currentlyPlaying == playerWindow.playlist.SongList[i]._fileName)
 					{
 					songIndex = i;
 					}
 				}
-			if (songIndex < playerWindow._playlist.SongList.Count - 1)
+			if (songIndex < playerWindow.playlist.SongList.Count - 1)
 				{
-				Play(playerWindow._playlist.SongList[songIndex + 1], playerWindow);
+				Play(playerWindow.playlist.SongList[songIndex + 1], playerWindow);
 				}
 			}
 
@@ -43,16 +43,16 @@ namespace musicWPF
 			{
 			int songIndex = 0;
 
-			for (int i = 0; i < playerWindow._playlist.SongList.Count; i++)
+			for (int i = 0; i < playerWindow.playlist.SongList.Count; i++)
 				{
-				if (playerWindow.currentlyPlaying == playerWindow._playlist.SongList[i]._fileName)
+				if (playerWindow.currentlyPlaying == playerWindow.playlist.SongList[i]._fileName)
 					{
 					songIndex = i;
 					}
 				}
 			if (songIndex > 0)
 				{
-				Play(playerWindow._playlist.SongList[songIndex - 1], playerWindow);
+				Play(playerWindow.playlist.SongList[songIndex - 1], playerWindow);
 				}
 			}
 
@@ -60,8 +60,8 @@ namespace musicWPF
 			{
 			playerWindow.playerPos.X = playerWindow.Left + playerWindow.Width;
 			playerWindow.playerPos.Y = playerWindow.Top;
-			playerWindow._playlist.Left = playerWindow.playerPos.X;
-			playerWindow._playlist.Top = playerWindow.playerPos.Y;
+			playerWindow.playlist.Left = playerWindow.playerPos.X;
+			playerWindow.playlist.Top = playerWindow.playerPos.Y;
 			}
 
 		}

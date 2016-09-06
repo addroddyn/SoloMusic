@@ -16,7 +16,7 @@ namespace musicWPF
 
 			StreamWriter writer = new StreamWriter(stream, Encoding.UTF8, 1024);
 			writer.AutoFlush = true;
-			foreach (Song song in _playlist.SongList)
+			foreach (Song song in playlist.SongList)
 				{
 				writer.WriteLine(song.FilePath);
 				}
@@ -24,7 +24,7 @@ namespace musicWPF
 
 		public void SetPlaylist(Playlist playlist)
 			{
-			_playlist = playlist;
+			this.playlist = playlist;
 			}
 		}
 	}
