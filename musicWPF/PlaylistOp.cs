@@ -15,53 +15,48 @@ using System.Windows.Media;
 
 namespace musicWPF
 {
-    /// <summary>
-    /// Description of PlaylistOp.
-    /// </summary>
-    public partial class Playlist : Window
-    {
-        public int currentSong = 1;
-        
+	/// <summary>
+	/// Description of PlaylistOp.
+	/// </summary>
+	public partial class Playlist : Window
+		{
+		public int currentSong = 1;
+
         void addFileButton_Click(object sender, RoutedEventArgs e)
-        {
-            var openFile = new OpenFileDialog();
-			openFile.Filter = "Supported files (*.mp3, *.wav, *.wma, *.aac) | *.mp3; *.wav; *.wma; *.aac";
+			{
+			try
+				{
+				var openFile = new OpenFileDialog();
+				openFile.Filter = "Supported files (*.mp3, *.wav, *.wma, *.aac) | *.mp3; *.wav; *.wma; *.aac";
 
-			if (openFile.ShowDialog() == true)
-            {
-                Uri file = new Uri(openFile.FileName);
-				if (file.IsFile)
+				if (openFile.ShowDialog() == true)
 					{
-					var song = new Song(file, openFile.FileName, currentSong);
-					songList.Add(song);
-					currentSong++;
-					}
+					Uri file = new Uri(openFile.FileName);
+					if (file.IsFile)
+						{
+						var song = new Song(file, openFile.FileName, currentSong);
+						songList.Add(song);
+						currentSong++;
+						}
 
+					}
+				}
+			catch (Exception file_e)
+				{
+				string error = "Error when opening file: " + file_e.ToString();
+				MessageBox.Show(error);
+				}
 			}
-        }
         
         void addFolderButton_Click(object sender, RoutedEventArgs e)
         {
-            var openFolder = new WinForms.FolderBrowserDialog();
-            if (openFolder.ShowDialog() == WinForms.DialogResult.OK)
-            {
-                foreach (string fileName in Directory.EnumerateFiles(openFolder.SelectedPath))
-                {
-					if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
+			try
+				{
+				var openFolder = new WinForms.FolderBrowserDialog();
+				if (openFolder.ShowDialog() == WinForms.DialogResult.OK)
+					{
+					foreach (string fileName in Directory.EnumerateFiles(openFolder.SelectedPath))
 						{
-						Uri file = new Uri(fileName);
-						if (file.IsFile)
-							{
-							var song = new Song(file, fileName, currentSong);
-							songList.Add(song);
-							currentSong++;
-							}
-						}
-                }
-                foreach (string dirName in Directory.EnumerateDirectories(openFolder.SelectedPath))
-                {
-                    foreach (string fileName in Directory.EnumerateFiles(dirName))
-                    {
 						if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
 							{
 							Uri file = new Uri(fileName);
@@ -72,9 +67,30 @@ namespace musicWPF
 								currentSong++;
 								}
 							}
-                    }
-                }
-            }
+						}
+					foreach (string dirName in Directory.EnumerateDirectories(openFolder.SelectedPath))
+						{
+						foreach (string fileName in Directory.EnumerateFiles(dirName))
+							{
+							if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
+								{
+								Uri file = new Uri(fileName);
+								if (file.IsFile)
+									{
+									var song = new Song(file, fileName, currentSong);
+									songList.Add(song);
+									currentSong++;
+									}
+								}
+							}
+						}
+					}
+				}
+			catch (Exception folder_e)
+				{
+				string error = "Error when opening folder: " + folder_e.ToString();
+				MessageBox.Show(error);
+				}
         }
         
         void clearButton_Click(object sender, RoutedEventArgs e)
