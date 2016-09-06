@@ -64,5 +64,20 @@ namespace musicWPF
 					}
 				}
 			}
+
+		private void deleteSavedPlaylistButton_Click(object sender, RoutedEventArgs e)
+			{
+			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\playlist_musicWPF.txt";
+			try
+				{
+				File.Delete(path);
+				MessageBox.Show("Saved playlist deleted.");
+				}
+			catch (Exception ex)
+				{
+				string error = "error when deleting file: " + ex.ToString();
+				MessageBox.Show("Delete failed");
+				}
+			}
 		}
 }
