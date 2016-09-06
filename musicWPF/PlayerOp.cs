@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace musicWPF
 {
@@ -52,15 +53,29 @@ namespace musicWPF
         
         public void Play(Song song)
         {
+			posSlider.Value = 0;
             currentlyPlaying = song._fileName;
             player.Open(song._fileName);
             player.Play();
             SongArtist = song.SongArtist;
             SongTitle = song.SongTitle;
-            player.MediaEnded += player_MediaEnded;
+			var timer = new DispatcherTimer();
+			timer.Interval = TimeSpan.FromSeconds(1);
+			timer.Tick += new EventHandler(timer_Tick);
+			timer.Start();
+			player.MediaEnded += player_MediaEnded;
         }
-        
-        void StopButton_Click(object sender, RoutedEventArgs e)
+
+		private void timer_Tick(object sender, EventArgs e)
+			{
+			if (player.NaturalDuration.HasTimeSpan)
+				{
+				posSlider.Maximum = player.NaturalDuration.TimeSpan.TotalSeconds;
+				posSlider.Value = player.Position.TotalSeconds;
+				}
+			}
+
+		void StopButton_Click(object sender, RoutedEventArgs e)
         {
             player.Stop();
         }

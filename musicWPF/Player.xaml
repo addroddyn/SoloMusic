@@ -9,7 +9,13 @@
     x:Name="window1"
     LocationChanged="window1_LocationChanged">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -27,8 +33,12 @@
                 Text="{Binding SongTitle}"
                 x:Name="SongTitleBar" />
         </Grid>
+            <Grid Grid.Row="2">
+                <Slider x:Name="posSlider"
+                 MouseLeftButtonUp="posSlider_MouseLeftButtonUp"/>
+            </Grid>
         <Grid
-            Grid.Row="2"
+            Grid.Row="3"
             Background="AliceBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -68,5 +78,16 @@
                     Click="playlistButton_Click"/>
             </Grid>
         </Grid>
+    </Grid>
+        <DockPanel Grid.Column="1" HorizontalAlignment="Stretch">
+            <Slider x:Name="volumeSlider"
+                HorizontalAlignment="Center" 
+                Orientation="Vertical" 
+                Maximum="1.0"
+                Minimum="0.0"
+                Value="0.5"
+                ValueChanged="volumeSlider_ValueChanged"
+                />
+        </DockPanel>
     </Grid>
 </Window>

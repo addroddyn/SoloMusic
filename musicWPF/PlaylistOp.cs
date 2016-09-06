@@ -30,7 +30,7 @@ namespace musicWPF
                 Uri file = new Uri(openFile.FileName);
                 var song = new Song(file, currentSong);
                 songList.Add(song);
-                currentSong++;
+				currentSong++;
             }
         }
         

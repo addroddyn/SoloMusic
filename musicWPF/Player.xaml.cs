@@ -13,13 +13,13 @@ using System.Runtime.CompilerServices;
 
 namespace musicWPF
 {
-    public partial class Player : Window, INotifyPropertyChanged
-    {
-        Playlist _playlist;
-        string _songArtist = "created by";
-        string _songTitle = "addroddyn";
-        bool isPlaylistOpen = false;
-        
+	public partial class Player : Window, INotifyPropertyChanged
+		{
+		Playlist _playlist;
+		string _songArtist = "created by";
+		string _songTitle = "addroddyn";
+		bool isPlaylistOpen = false;
+		
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -59,11 +59,23 @@ namespace musicWPF
             InitializeComponent();
             Closing += Player_Closing;
             this.DataContext = this;
+			player.Volume = 0.5;
         }
         
         public void SetPlaylist(Playlist playlist)
         {
             _playlist = playlist;
         }
-    }
+
+		private void volumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+			{
+			player.Volume = volumeSlider.Value;
+			}
+
+		private void posSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+			{
+			double songDuration = player.NaturalDuration.TimeSpan.TotalSeconds;
+			player.Position = TimeSpan.FromSeconds((posSlider.Value * 100) / songDuration);
+			}
+		}
 }

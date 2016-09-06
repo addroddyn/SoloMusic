@@ -27,11 +27,15 @@
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Grid>
-                                <TextBlock Text="{Binding SongNumber}"/>
+                            <Grid >
+                                <TextBlock 
+                                    x:Name="numberColumn"
+                                    Text="{Binding SongNumber}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0, 0, 2, 0"/>
                             </Grid>
                             <Grid Grid.Column="1">
                                 <TextBlock
