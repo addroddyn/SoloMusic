@@ -60,7 +60,11 @@ namespace musicWPF
             Closing += Player_Closing;
             this.DataContext = this;
 			player.Volume = 0.5;
-        }
+			
+			posSlider.AddHandler(MouseLeftButtonUpEvent,
+					  new MouseButtonEventHandler(timeSlider_MouseLeftButtonUp),
+					  true);
+			}
         
         public void SetPlaylist(Playlist playlist)
         {
@@ -72,10 +76,13 @@ namespace musicWPF
 			player.Volume = volumeSlider.Value;
 			}
 
-		private void posSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		private void timeSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 			{
-			double songDuration = player.NaturalDuration.TimeSpan.TotalSeconds;
-			player.Position = TimeSpan.FromSeconds((posSlider.Value * 100) / songDuration);
+			var TotalTime = player.NaturalDuration.TimeSpan;
+			if (TotalTime.TotalSeconds > 0)
+				{
+				player.Position = TimeSpan.FromSeconds(posSlider.Value/* * TotalTime.TotalSeconds*/);
+				}
 			}
 		}
 }

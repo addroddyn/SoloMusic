@@ -19,6 +19,7 @@ namespace musicWPF
         Point playerPos = new Point();
         MediaPlayer player = new MediaPlayer();
         Uri currentlyPlaying = null;
+		bool isDragged = false;
         
         void playlistButton_Click(object sender, RoutedEventArgs e)
         {
@@ -68,7 +69,7 @@ namespace musicWPF
 
 		private void timer_Tick(object sender, EventArgs e)
 			{
-			if (player.NaturalDuration.HasTimeSpan)
+			if (player.NaturalDuration.HasTimeSpan && isDragged == false)
 				{
 				posSlider.Maximum = player.NaturalDuration.TimeSpan.TotalSeconds;
 				posSlider.Value = player.Position.TotalSeconds;

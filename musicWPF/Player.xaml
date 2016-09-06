@@ -34,8 +34,7 @@
                 x:Name="SongTitleBar" />
         </Grid>
             <Grid Grid.Row="2">
-                <Slider x:Name="posSlider"
-                 MouseLeftButtonUp="posSlider_MouseLeftButtonUp"/>
+                <Slider x:Name="posSlider" IsMoveToPointEnabled="True"/>
             </Grid>
         <Grid
             Grid.Row="3"
@@ -81,7 +80,8 @@
     </Grid>
         <DockPanel Grid.Column="1" HorizontalAlignment="Stretch">
             <Slider x:Name="volumeSlider"
-                HorizontalAlignment="Center" 
+                HorizontalAlignment="Center"
+                IsMoveToPointEnabled="True"
                 Orientation="Vertical" 
                 Maximum="1.0"
                 Minimum="0.0"
