@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.ComponentModel;
+using System.IO;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -60,7 +61,6 @@ namespace musicWPF
             Closing += Player_Closing;
             this.DataContext = this;
 			player.Volume = 0.5;
-			
 			posSlider.AddHandler(MouseLeftButtonUpEvent,
 					  new MouseButtonEventHandler(timeSlider_MouseLeftButtonUp),
 					  true);
@@ -78,11 +78,19 @@ namespace musicWPF
 
 		private void timeSlider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 			{
-			var TotalTime = player.NaturalDuration.TimeSpan;
-			if (TotalTime.TotalSeconds > 0)
+			if (player.NaturalDuration.HasTimeSpan)
 				{
-				player.Position = TimeSpan.FromSeconds(posSlider.Value/* * TotalTime.TotalSeconds*/);
+				var TotalTime = player.NaturalDuration.TimeSpan;
+				if (TotalTime.TotalSeconds > 0)
+					{
+					player.Position = TimeSpan.FromSeconds(posSlider.Value);
+					}
 				}
+			}
+
+		private void window1_Activated(object sender, EventArgs e)
+			{
+			_playlist.Activate();
 			}
 		}
 }

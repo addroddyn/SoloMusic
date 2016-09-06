@@ -30,9 +30,12 @@ namespace musicWPF
 			if (openFile.ShowDialog() == true)
             {
                 Uri file = new Uri(openFile.FileName);
-				var song = new Song(file, openFile.FileName, currentSong);
-				songList.Add(song);
-				currentSong++;
+				if (file.IsFile)
+					{
+					var song = new Song(file, openFile.FileName, currentSong);
+					songList.Add(song);
+					currentSong++;
+					}
 
 			}
         }
@@ -47,9 +50,12 @@ namespace musicWPF
 					if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
 						{
 						Uri file = new Uri(fileName);
-						var song = new Song(file, fileName, currentSong);
-						songList.Add(song);
-						currentSong++;
+						if (file.IsFile)
+							{
+							var song = new Song(file, fileName, currentSong);
+							songList.Add(song);
+							currentSong++;
+							}
 						}
                 }
                 foreach (string dirName in Directory.EnumerateDirectories(openFolder.SelectedPath))
@@ -59,9 +65,12 @@ namespace musicWPF
 						if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
 							{
 							Uri file = new Uri(fileName);
-							var song = new Song(file, fileName, currentSong);
-							songList.Add(song);
-							currentSong++;
+							if (file.IsFile)
+								{
+								var song = new Song(file, fileName, currentSong);
+								songList.Add(song);
+								currentSong++;
+								}
 							}
                     }
                 }

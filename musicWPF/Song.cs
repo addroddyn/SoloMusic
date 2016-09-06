@@ -13,6 +13,7 @@ namespace musicWPF
         private string _songTitle;
         private string _songNumber;
         private string _songArtist;
+		private string _filePath;
         
         public string SongNumber
         {
@@ -36,11 +37,20 @@ namespace musicWPF
                 return _songArtist;
             }
         }
+
+		public string FilePath
+			{
+			get
+				{
+				return _filePath;
+				}
+			}
         
         public Song(Uri fileUri, string fileString, int songNumber)
         {
+			_filePath = fileString;
 			TagLib.File tagFile = TagLib.File.Create(fileString);
-            _songNumber = songNumber.ToString();
+            _songNumber = songNumber.ToString() + ".";
 			_songTitle = tagFile.Tag.Title;
 			if (_songTitle == null)
 				{

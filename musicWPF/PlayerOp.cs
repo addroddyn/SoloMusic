@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -41,9 +42,26 @@ namespace musicWPF
         
         void Player_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+			var result = MessageBox.Show("Do you want to save the current playlist?\n(If no changes were made, just click 'No')", "Save Playlist", MessageBoxButton.YesNo);
+			if (result == MessageBoxResult.Yes)
+				{
+				SavePlaylist();				
+				}
             Environment.Exit(0);
         }
         
+		private void SavePlaylist()
+			{
+			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\playlist_musicWPF.txt";
+			var stream = new FileStream(path, FileMode.Create);
+			StreamWriter writer = new StreamWriter(stream, Encoding.UTF8, 1024);
+			writer.AutoFlush = true;
+			foreach (Song song in _playlist.SongList)
+				{
+				writer.WriteLine(song.FilePath);
+				}
+			}
+
         void window1_LocationChanged(object sender, EventArgs e)
         {
                 playerPos.X = this.Left + this.Width;

@@ -7,7 +7,7 @@
     MinHeight="120"
     MinWidth="600"
     x:Name="window1"
-    LocationChanged="window1_LocationChanged">
+    LocationChanged="window1_LocationChanged" Activated="window1_Activated">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="18*"/>
