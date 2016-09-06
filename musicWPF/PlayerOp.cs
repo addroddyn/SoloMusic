@@ -13,6 +13,7 @@ namespace musicWPF
 			{
 			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\playlist_musicWPF.txt";
 			var stream = new FileStream(path, FileMode.Create);
+
 			StreamWriter writer = new StreamWriter(stream, Encoding.UTF8, 1024);
 			writer.AutoFlush = true;
 			foreach (Song song in _playlist.SongList)

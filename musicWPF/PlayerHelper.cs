@@ -25,6 +25,7 @@ namespace musicWPF
 		public static void PlayNext(Player playerWindow)
 			{
 			int songIndex = 0;
+
 			for (int i = 0; i < playerWindow._playlist.SongList.Count; i++)
 				{
 				if (playerWindow.currentlyPlaying == playerWindow._playlist.SongList[i]._fileName)
@@ -41,6 +42,7 @@ namespace musicWPF
 		public static void PlayPrev(Player playerWindow)
 			{
 			int songIndex = 0;
+
 			for (int i = 0; i < playerWindow._playlist.SongList.Count; i++)
 				{
 				if (playerWindow.currentlyPlaying == playerWindow._playlist.SongList[i]._fileName)

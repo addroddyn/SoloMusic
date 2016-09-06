@@ -6,7 +6,7 @@ using System.IO;
 
 namespace musicWPF
 	{
-	class PlaylistEvents
+	public partial class Playlist : Window
 		{
 		// Events for the playlist window.
 
@@ -15,11 +15,13 @@ namespace musicWPF
 		private void deleteSavedPlaylistButton_Click(object sender, RoutedEventArgs e)
 			{
 			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\playlist_musicWPF.txt";
+
 			try
 				{
 				File.Delete(path);
 				MessageBox.Show("Saved playlist deleted.");
 				}
+
 			catch (Exception ex)
 				{
 				string error = "error when deleting file: " + ex.ToString();
@@ -32,8 +34,8 @@ namespace musicWPF
 			try
 				{
 				var openFile = new OpenFileDialog();
-				openFile.Filter = "Supported files (*.mp3, *.wav, *.wma, *.aac) | *.mp3; *.wav; *.wma; *.aac";
 
+				openFile.Filter = "Supported files (*.mp3, *.wav, *.wma, *.aac) | *.mp3; *.wav; *.wma; *.aac";
 				if (openFile.ShowDialog() == true)
 					{
 					Uri file = new Uri(openFile.FileName);
@@ -43,9 +45,9 @@ namespace musicWPF
 						songList.Add(song);
 						currentSong++;
 						}
-
 					}
 				}
+
 			catch (Exception file_e)
 				{
 				string error = "Error when opening file: " + file_e.ToString();
@@ -58,6 +60,7 @@ namespace musicWPF
 			try
 				{
 				var openFolder = new WinForms.FolderBrowserDialog();
+
 				if (openFolder.ShowDialog() == WinForms.DialogResult.OK)
 					{
 					foreach (string fileName in Directory.EnumerateFiles(openFolder.SelectedPath))
@@ -73,6 +76,7 @@ namespace musicWPF
 								}
 							}
 						}
+
 					foreach (string dirName in Directory.EnumerateDirectories(openFolder.SelectedPath))
 						{
 						foreach (string fileName in Directory.EnumerateFiles(dirName))
@@ -91,6 +95,7 @@ namespace musicWPF
 						}
 					}
 				}
+
 			catch (Exception folder_e)
 				{
 				string error = "Error when opening folder: " + folder_e.ToString();
@@ -115,7 +120,5 @@ namespace musicWPF
 			{
 			PlayerHelper.Play(songList[listBox1.SelectedIndex], playerWindow);
 			}
-
-
 		}
 	}

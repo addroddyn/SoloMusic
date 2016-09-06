@@ -57,7 +57,6 @@ namespace musicWPF
 				{
 				_songArtist = tagFile.Tag.FirstPerformer + " - ";
 				}
-
 			_fileName = fileUri;
 			}
 		}
