@@ -46,8 +46,6 @@
                         x:Name="SongTitleBar" />
                 </Grid>
         </Grid>
-        
-            
             
         <!--position slider-->    
         <Grid Grid.Row="1">
@@ -96,7 +94,6 @@
                     Click="playlistButton_Click"/>
             </Grid>
         </Grid>
-            
             
     </Grid>
         <DockPanel Grid.Column="1" HorizontalAlignment="Stretch">
