@@ -1,4 +1,5 @@
 ﻿using System;
+using TagLib;
 
 namespace musicWPF
 	{
@@ -46,7 +47,7 @@ namespace musicWPF
 		public Song(Uri fileUri, string fileString, int songNumber)
 			{
 			_filePath = fileString;
-			TagLib.File tagFile = TagLib.File.Create(fileString);
+			File tagFile = File.Create(fileString);
 			_songNumber = songNumber.ToString() + ".";
 			_songTitle = tagFile.Tag.Title;
 			if (_songTitle == null)

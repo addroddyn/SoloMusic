@@ -57,50 +57,12 @@ namespace musicWPF
 
 		void addFolderButton_Click(object sender, RoutedEventArgs e)
 			{
-			try
-				{
-				var openFolder = new WinForms.FolderBrowserDialog();
-
-				if (openFolder.ShowDialog() == WinForms.DialogResult.OK)
-					{
-					foreach (string fileName in Directory.EnumerateFiles(openFolder.SelectedPath))
-						{
-						if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
-							{
-							Uri file = new Uri(fileName);
-							if (file.IsFile)
-								{
-								var song = new Song(file, fileName, currentSong);
-								songList.Add(song);
-								currentSong++;
-								}
-							}
-						}
-
-					foreach (string dirName in Directory.EnumerateDirectories(openFolder.SelectedPath))
-						{
-						foreach (string fileName in Directory.EnumerateFiles(dirName))
-							{
-							if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
-								{
-								Uri file = new Uri(fileName);
-								if (file.IsFile)
-									{
-									var song = new Song(file, fileName, currentSong);
-									songList.Add(song);
-									currentSong++;
-									}
-								}
-							}
-						}
-					}
-				}
-
-			catch (Exception folder_e)
-				{
-				string error = "Error when opening folder: " + folder_e.ToString();
-				MessageBox.Show(error);
-				}
+		    var openFolder = new WinForms.FolderBrowserDialog();
+		    if (openFolder.ShowDialog() == WinForms.DialogResult.OK)
+		    {
+		        string filePath = openFolder.SelectedPath;
+		        AddFolder(filePath);
+		    }
 			}
 
 		void clearButton_Click(object sender, RoutedEventArgs e)

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Windows;
+using WinForms = System.Windows.Forms;
 using System.IO;
-
 
 namespace musicWPF
 	{
@@ -36,5 +36,34 @@ namespace musicWPF
 				MessageBox.Show(error);
 				}
 			}
+		
+		private void AddFolder(string filePath)
+		{
+		    try
+                {
+                foreach (string fileName in Directory.EnumerateFiles(filePath))
+                    {
+                    if (fileName.Contains(".mp3") || fileName.Contains(".wav") || fileName.Contains(".wma") || fileName.Contains(".aac"))
+                        {
+                        Uri file = new Uri(fileName);
+                        if (file.IsFile)
+                            {
+                            var song = new Song(file, fileName, currentSong);
+                            songList.Add(song);
+                            currentSong++;
+                            }
+                        }
+                    }
+                foreach (string dirName in Directory.EnumerateDirectories(filePath))
+                    {
+                    AddFolder(dirName);
+                    }
+                }
+            catch (Exception folder_e)
+                {
+                string error = "Error when opening folder: " + folder_e.ToString();
+                MessageBox.Show(error);
+                }
+		  }
 		}
 	}
