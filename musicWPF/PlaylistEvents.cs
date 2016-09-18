@@ -15,7 +15,6 @@ namespace musicWPF
 		private void deleteSavedPlaylistButton_Click(object sender, RoutedEventArgs e)
 			{
 			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\playlist_musicWPF.txt";
-
 			try
 				{
 				File.Delete(path);
@@ -34,7 +33,6 @@ namespace musicWPF
 			try
 				{
 				var openFile = new OpenFileDialog();
-
 				openFile.Filter = "Supported files (*.mp3, *.wav, *.wma, *.aac) | *.mp3; *.wav; *.wma; *.aac";
 				if (openFile.ShowDialog() == true)
 					{
@@ -59,10 +57,10 @@ namespace musicWPF
 			{
 		    var openFolder = new WinForms.FolderBrowserDialog();
 		    if (openFolder.ShowDialog() == WinForms.DialogResult.OK)
-		    {
-		        string filePath = openFolder.SelectedPath;
-		        AddFolder(filePath);
-		    }
+    		    {
+    		    string filePath = openFolder.SelectedPath;
+    		    AddFolder(filePath);
+    		    }
 			}
 
 		void clearButton_Click(object sender, RoutedEventArgs e)
